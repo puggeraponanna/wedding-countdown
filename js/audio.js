@@ -188,7 +188,7 @@ export function enableAutoPlayOnInteraction(audioController, options = {}) {
   if (!win || !audioController) return () => {};
 
   let interactionCleaned = false;
-  const events = ['click', 'touchstart', 'touchend', 'pointerdown', 'keydown', 'scroll'];
+  const events = ['click', 'touchstart', 'touchend', 'pointerdown', 'keydown'];
 
   const cleanup = () => {
     if (interactionCleaned) return;

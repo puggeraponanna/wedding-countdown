@@ -51,9 +51,9 @@
       </svg>
       <span class="audio-tooltip">Music: Canon in D</span>
     </button>
-    <div id="audio-pill" class="audio-pill" aria-live="polite">
+    <div id="audio-pill" class="audio-pill" role="button" tabindex="0" aria-label="Play wedding music">
       <span class="audio-pill-icon">🎵</span>
-      <span id="audio-pill-text" class="audio-pill-text">Tap anywhere for music</span>
+      <span id="audio-pill-text" class="audio-pill-text">Click anywhere for music</span>
     </div>
   </div>
 
@@ -223,9 +223,42 @@
     const audioPillText = document.getElementById('audio-pill-text');
     const audioController = initAudio({ buttonElement: audioBtn });
 
-    // Enable audio on first tap/touch anywhere on screen
+    // Enable direct clicking on the floating pill
+    if (audioPill) {
+      const handlePillClick = (e) => {
+        e.stopPropagation();
+        if (!audioController.isPlaying()) {
+          audioController.play();
+        }
+      };
+      audioPill.addEventListener('click', handlePillClick);
+      audioPill.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handlePillClick(e);
+        }
+      });
+    }
+
+    // Modern browsers require a click/tap to play audio; scrolling alone is blocked.
+    // If a desktop user scrolls before clicking, highlight the pill to prompt them.
+    const handleScrollAttempt = () => {
+      if (!audioController.isPlaying() && audioPill && !audioPill.classList.contains('playing')) {
+        audioPillText.textContent = 'Click anywhere for music';
+        audioPill.classList.remove('fade-out');
+        audioPill.classList.remove('pulse-attention');
+        void audioPill.offsetWidth; // trigger reflow for animation restart
+        audioPill.classList.add('pulse-attention');
+      }
+    };
+    window.addEventListener('wheel', handleScrollAttempt, { passive: true });
+    window.addEventListener('scroll', handleScrollAttempt, { passive: true });
+
+    // Enable audio on first tap/click anywhere on screen
     enableAutoPlayOnInteraction(audioController, {
       onStarted: () => {
+        window.removeEventListener('wheel', handleScrollAttempt);
+        window.removeEventListener('scroll', handleScrollAttempt);
         if (audioPill && audioPillText) {
           audioPillText.textContent = 'Playing Canon in D';
           audioPill.classList.add('playing');
@@ -236,12 +269,12 @@
       }
     });
 
-    // Auto-fade hint pill after 5 seconds if not interacted
+    // Auto-fade hint pill after 6 seconds if not interacted
     setTimeout(() => {
       if (audioPill && !audioController.isPlaying()) {
         audioPill.classList.add('fade-out');
       }
-    }, 5000);
+    }, 6000);
 
     // 3. Initialize Countdown
     const daysEl = document.getElementById('days');

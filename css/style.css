@@ -140,10 +140,18 @@ body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
   animation: pillGentleBounce 2.4s infinite ease-in-out;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease, background 0.3s ease, border-color 0.3s ease;
   white-space: nowrap;
+}
+
+.audio-pill:hover {
+  background: rgba(92, 20, 22, 0.95);
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 0 15px rgba(200, 141, 50, 0.4);
 }
 
 .audio-pill.fade-out {
@@ -156,6 +164,21 @@ body {
   background: rgba(92, 20, 22, 0.9);
   border-color: rgba(200, 141, 50, 0.6);
   animation: none;
+  cursor: default;
+}
+
+.audio-pill.pulse-attention {
+  animation: pillAttention 0.7s ease;
+  border-color: var(--color-gold-primary);
+  background: rgba(92, 20, 22, 0.95);
+  box-shadow: 0 0 20px rgba(200, 141, 50, 0.6);
+}
+
+@keyframes pillAttention {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.1); }
+  70% { transform: scale(0.97); }
+  100% { transform: scale(1); }
 }
 
 @keyframes pillGentleBounce {
