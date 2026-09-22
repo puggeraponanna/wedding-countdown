@@ -1,7 +1,16 @@
 // js/audio.js
 
+export const WEDDING_MUSIC_TRACK = {
+  id: 'canon-in-d',
+  name: 'Romantic Strings & Piano',
+  subtitle: "Pachelbel's Canon in D Major",
+  src: 'assets/wedding-music.m4a',
+  fallbackSrc: 'assets/wedding-music.ogg',
+};
+
 export function createAudioState() {
   let playing = false;
+
   return {
     isPlaying: () => playing,
     setPlaying: (val) => { playing = !!val; },
@@ -9,114 +18,144 @@ export function createAudioState() {
       playing = !playing;
       return playing;
     },
+    getTrack: () => WEDDING_MUSIC_TRACK,
   };
 }
 
 /**
- * Initializes ambient audio using Web Audio API synthesis (warm meditative melodic bells/harp)
- * combined with audio element support.
+ * Initializes wedding background audio with HTML5 Audio element.
  */
 export function initAudio({ buttonElement, statusElement }) {
   if (typeof window === 'undefined') return;
 
   const state = createAudioState();
-  let audioCtx = null;
-  let synthInterval = null;
+  let audioElement = null;
+  let fadeInterval = null;
 
-  // Gentle pentatonic Indian classical / romantic scale notes (in Hz)
-  // Sa, Re, Ga, Pa, Dha (Raag Mohanam / Bhupali - celebrated, auspicious wedding raga)
-  const notes = [
-    261.63, // C4 (Sa)
-    293.66, // D4 (Re)
-    329.63, // E4 (Ga)
-    392.00, // G4 (Pa)
-    440.00, // A4 (Dha)
-    523.25, // C5 (Sa')
-    587.33, // D5 (Re')
-    659.25, // E5 (Ga')
-  ];
+  function getAudioElement() {
+    if (!audioElement) {
+      audioElement = new Audio();
+      audioElement.loop = true;
+      audioElement.preload = 'auto';
 
-  function getAudioContext() {
-    if (!audioCtx) {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContextClass();
+      // Check format support
+      const canPlayM4A = audioElement.canPlayType('audio/mp4; codecs="mp4a.40.2"');
+      audioElement.src = canPlayM4A ? WEDDING_MUSIC_TRACK.src : WEDDING_MUSIC_TRACK.fallbackSrc;
+
+      audioElement.addEventListener('play', () => {
+        state.setPlaying(true);
+        updateUi();
+      });
+
+      audioElement.addEventListener('pause', () => {
+        state.setPlaying(false);
+        updateUi();
+      });
+
+      audioElement.addEventListener('error', () => {
+        if (audioElement.src.includes('.m4a') && WEDDING_MUSIC_TRACK.fallbackSrc) {
+          audioElement.src = WEDDING_MUSIC_TRACK.fallbackSrc;
+          if (state.isPlaying()) {
+            audioElement.play().catch(() => {});
+          }
+        }
+      });
     }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-    return audioCtx;
+    return audioElement;
   }
 
-  function playGentleBell(freq) {
-    if (!state.isPlaying()) return;
-    try {
-      const ctx = getAudioContext();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.06, ctx.currentTime + 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 2.8);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 2.9);
-    } catch {
-      // Audio autoplay policy catch
-    }
+  function fadeIn(audio, targetVolume = 0.8, durationMs = 1200) {
+    if (fadeInterval) clearInterval(fadeInterval);
+    audio.volume = 0.05;
+    const step = (targetVolume - 0.05) / (durationMs / 50);
+    fadeInterval = setInterval(() => {
+      if (audio.volume + step >= targetVolume) {
+        audio.volume = targetVolume;
+        clearInterval(fadeInterval);
+      } else {
+        audio.volume += step;
+      }
+    }, 50);
   }
 
-  function startAmbientChimes() {
-    // Play an opening gentle chord
-    playGentleBell(notes[0]);
-    setTimeout(() => playGentleBell(notes[2]), 400);
-    setTimeout(() => playGentleBell(notes[4]), 800);
-
-    synthInterval = setInterval(() => {
-      if (!state.isPlaying()) return;
-      const note = notes[Math.floor(Math.random() * notes.length)];
-      playGentleBell(note);
-    }, 2200);
-  }
-
-  function stopAmbientChimes() {
-    if (synthInterval) clearInterval(synthInterval);
+  function fadeOut(audio, durationMs = 600, callback) {
+    if (fadeInterval) clearInterval(fadeInterval);
+    const step = audio.volume / (durationMs / 50);
+    fadeInterval = setInterval(() => {
+      if (audio.volume - step <= 0.05) {
+        audio.volume = 0;
+        clearInterval(fadeInterval);
+        if (typeof callback === 'function') callback();
+      } else {
+        audio.volume -= step;
+      }
+    }, 50);
   }
 
   function updateUi() {
     const isPlaying = state.isPlaying();
+
     if (buttonElement) {
       buttonElement.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
       buttonElement.classList.toggle('playing', isPlaying);
+      buttonElement.title = isPlaying
+        ? `Pause: ${WEDDING_MUSIC_TRACK.name} (${WEDDING_MUSIC_TRACK.subtitle})`
+        : `Play: ${WEDDING_MUSIC_TRACK.name} (${WEDDING_MUSIC_TRACK.subtitle})`;
     }
+
     if (statusElement) {
-      statusElement.textContent = isPlaying ? 'Sound: On' : 'Sound: Off';
+      statusElement.textContent = isPlaying
+        ? `Music: On — ${WEDDING_MUSIC_TRACK.name}`
+        : 'Music: Off';
     }
+  }
+
+  function play() {
+    const audio = getAudioElement();
+    state.setPlaying(true);
+    audio.play().then(() => {
+      fadeIn(audio);
+    }).catch((err) => {
+      console.warn('Playback error or user gesture required:', err);
+      state.setPlaying(false);
+      updateUi();
+    });
+    updateUi();
+  }
+
+  function pause() {
+    const audio = getAudioElement();
+    state.setPlaying(false);
+    fadeOut(audio, 500, () => {
+      audio.pause();
+    });
+    updateUi();
   }
 
   function toggle() {
-    const willPlay = state.toggle();
-    if (willPlay) {
-      getAudioContext();
-      startAmbientChimes();
+    if (state.isPlaying()) {
+      pause();
     } else {
-      stopAmbientChimes();
+      play();
     }
-    updateUi();
-    return willPlay;
+    return state.isPlaying();
   }
 
   if (buttonElement) {
-    buttonElement.addEventListener('click', toggle);
+    buttonElement.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggle();
+    });
   }
 
+  // Preload audio ready for first play
+  getAudioElement();
+
   return {
+    play,
+    pause,
     toggle,
     isPlaying: () => state.isPlaying(),
+    track: WEDDING_MUSIC_TRACK,
   };
 }

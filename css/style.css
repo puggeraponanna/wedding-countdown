@@ -140,6 +140,22 @@ body {
   display: none;
 }
 
+.audio-toggle:hover .audio-tooltip {
+  display: block;
+  position: absolute;
+  right: calc(100% + 10px);
+  background: rgba(45, 27, 20, 0.92);
+  color: #fffdf9;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  border: 1px solid rgba(200, 141, 50, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
 @keyframes soundPulse {
   0% { transform: scale(0.9); opacity: 0.5; }
   100% { transform: scale(1.1); opacity: 1; }
