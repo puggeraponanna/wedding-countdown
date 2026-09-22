@@ -41,15 +41,21 @@
   <!-- Canvas for floating gold embers & jasmine petals -->
   <canvas id="particles-canvas" class="particles-bg" aria-hidden="true"></canvas>
 
-  <!-- Ambient Audio Floating Toggle -->
-  <button id="audio-toggle" class="audio-toggle" aria-label="Toggle ambient music" aria-pressed="false" title="Play ambient melody">
-    <svg class="icon-speaker" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-      <path class="sound-wave sound-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-      <path class="sound-wave sound-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-    </svg>
-    <span class="audio-tooltip">Music: Canon in D</span>
-  </button>
+  <!-- Ambient Audio Floating Toggle & Hint -->
+  <div class="audio-control-container">
+    <button id="audio-toggle" class="audio-toggle" aria-label="Toggle ambient music" aria-pressed="false" title="Play ambient melody">
+      <svg class="icon-speaker" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path class="sound-wave sound-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path class="sound-wave sound-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      </svg>
+      <span class="audio-tooltip">Music: Canon in D</span>
+    </button>
+    <div id="audio-pill" class="audio-pill" aria-live="polite">
+      <span class="audio-pill-icon">🎵</span>
+      <span id="audio-pill-text" class="audio-pill-text">Tap anywhere for music</span>
+    </div>
+  </div>
 
   <!-- Main Container -->
   <main class="page-wrapper">
@@ -204,25 +210,38 @@
   <script type="module">
     import { initCountdown } from './js/countdown.js';
     import { initParticles } from './js/particles.js';
-    import { initAudio } from './js/audio.js';
+    import { initAudio, enableAutoPlayOnInteraction } from './js/audio.js';
     import { generateGoogleCalendarUrl, downloadIcsFile } from './js/calendar.js';
 
     // 1. Initialize Particles Canvas
     const canvas = document.getElementById('particles-canvas');
     initParticles(canvas);
 
-    // 2. Initialize Audio
+    // 2. Initialize Audio & Auto-play on first tap
     const audioBtn = document.getElementById('audio-toggle');
+    const audioPill = document.getElementById('audio-pill');
+    const audioPillText = document.getElementById('audio-pill-text');
     const audioController = initAudio({ buttonElement: audioBtn });
 
-    // Enable audio on first user touch anywhere if not yet triggered
-    let hasInteracted = false;
-    document.addEventListener('click', () => {
-      if (!hasInteracted && !audioController.isPlaying()) {
-        hasInteracted = true;
-        // Audio can be activated on demand or left to explicit button
+    // Enable audio on first tap/touch anywhere on screen
+    enableAutoPlayOnInteraction(audioController, {
+      onStarted: () => {
+        if (audioPill && audioPillText) {
+          audioPillText.textContent = 'Playing Canon in D';
+          audioPill.classList.add('playing');
+          setTimeout(() => {
+            audioPill.classList.add('fade-out');
+          }, 2400);
+        }
       }
-    }, { once: true });
+    });
+
+    // Auto-fade hint pill after 5 seconds if not interacted
+    setTimeout(() => {
+      if (audioPill && !audioController.isPlaying()) {
+        audioPill.classList.add('fade-out');
+      }
+    }, 5000);
 
     // 3. Initialize Countdown
     const daysEl = document.getElementById('days');

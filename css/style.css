@@ -94,13 +94,22 @@ body {
   justify-content: space-between;
 }
 
-/* Audio Toggle Floating Button */
-.audio-toggle {
+/* Audio Control Floating Group */
+.audio-control-container {
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.85);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-direction: row-reverse;
+}
+
+/* Audio Toggle Floating Button */
+.audio-toggle {
+  position: relative;
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(200, 141, 50, 0.4);
@@ -114,6 +123,44 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(92, 20, 22, 0.08);
   transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.audio-pill {
+  background: rgba(45, 27, 20, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fffdf9;
+  border: 1px solid rgba(200, 141, 50, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: 0.38rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: none;
+  animation: pillGentleBounce 2.4s infinite ease-in-out;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  white-space: nowrap;
+}
+
+.audio-pill.fade-out {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
+
+.audio-pill.playing {
+  background: rgba(92, 20, 22, 0.9);
+  border-color: rgba(200, 141, 50, 0.6);
+  animation: none;
+}
+
+@keyframes pillGentleBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
 }
 
 .audio-toggle:hover {

@@ -110,20 +110,38 @@ export function initAudio({ buttonElement, statusElement }) {
     }
   }
 
+  let userPaused = false;
+
   function play() {
+    userPaused = false;
     const audio = getAudioElement();
     state.setPlaying(true);
-    audio.play().then(() => {
-      fadeIn(audio);
-    }).catch((err) => {
-      console.warn('Playback error or user gesture required:', err);
+    updateUi();
+
+    try {
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        return playPromise.then(() => {
+          fadeIn(audio);
+          return true;
+        }).catch((err) => {
+          console.warn('Playback error or user gesture required:', err);
+          state.setPlaying(false);
+          updateUi();
+          return false;
+        });
+      }
+      return Promise.resolve(true);
+    } catch (err) {
+      console.warn('Sync audio play error:', err);
       state.setPlaying(false);
       updateUi();
-    });
-    updateUi();
+      return Promise.resolve(false);
+    }
   }
 
   function pause() {
+    userPaused = true;
     const audio = getAudioElement();
     state.setPlaying(false);
     fadeOut(audio, 500, () => {
@@ -156,6 +174,77 @@ export function initAudio({ buttonElement, statusElement }) {
     pause,
     toggle,
     isPlaying: () => state.isPlaying(),
+    isUserPaused: () => userPaused,
     track: WEDDING_MUSIC_TRACK,
   };
+}
+
+/**
+ * Automatically unlocks and starts audio on the first user interaction anywhere on the document.
+ * Also attempts initial playback in case the browser environment permits autoplay.
+ */
+export function enableAutoPlayOnInteraction(audioController, options = {}) {
+  const win = options.windowObj || (typeof window !== 'undefined' ? window : null);
+  if (!win || !audioController) return () => {};
+
+  let interactionCleaned = false;
+  const events = ['click', 'touchstart', 'touchend', 'pointerdown', 'keydown', 'scroll'];
+
+  const cleanup = () => {
+    if (interactionCleaned) return;
+    interactionCleaned = true;
+    events.forEach((evt) => {
+      win.removeEventListener(evt, onInteraction, true);
+    });
+  };
+
+  const onInteraction = () => {
+    if (interactionCleaned) return;
+    if (typeof audioController.isUserPaused === 'function' && audioController.isUserPaused()) {
+      cleanup();
+      return;
+    }
+    if (audioController.isPlaying()) {
+      cleanup();
+      return;
+    }
+
+    const res = audioController.play();
+    if (res && typeof res.then === 'function') {
+      res.then((success) => {
+        if (success) {
+          cleanup();
+          if (typeof options.onStarted === 'function') {
+            options.onStarted();
+          }
+        }
+      }).catch(() => {});
+    } else {
+      cleanup();
+    }
+  };
+
+  // 1. Try immediate autoplay on page load
+  try {
+    const initRes = audioController.play();
+    if (initRes && typeof initRes.then === 'function') {
+      initRes.then((success) => {
+        if (success) {
+          cleanup();
+          if (typeof options.onStarted === 'function') {
+            options.onStarted();
+          }
+        }
+      }).catch(() => {});
+    }
+  } catch {
+    // Autoplay policy prevented immediate playback
+  }
+
+  // 2. Listen for first user gesture anywhere
+  events.forEach((evt) => {
+    win.addEventListener(evt, onInteraction, { capture: true, passive: true });
+  });
+
+  return cleanup;
 }

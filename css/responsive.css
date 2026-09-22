@@ -44,11 +44,20 @@
     padding: 1.5rem 0.75rem 2rem;
   }
 
-  .audio-toggle {
+  .audio-control-container {
     top: 1rem;
     right: 1rem;
+    gap: 0.4rem;
+  }
+
+  .audio-toggle {
     width: 42px;
     height: 42px;
+  }
+
+  .audio-pill {
+    font-size: 0.72rem;
+    padding: 0.32rem 0.65rem;
   }
 
   .hero-illustration-wrapper {
