@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Responsive Adaptations (Mobile & Tablet)
+   ========================================================================== */
+
+/* Tablets and below */
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 2rem 1rem 2.5rem;
+  }
+
+  .couple-title {
+    font-size: 2.75rem;
+  }
+
+  .countdown-grid {
+    gap: 0.75rem;
+  }
+
+  .digit-value {
+    font-size: 2.4rem;
+  }
+
+  .card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+  }
+
+  .details-card {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .detail-heading {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small smartphones */
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: 1.5rem 0.75rem 2rem;
+  }
+
+  .audio-toggle {
+    top: 1rem;
+    right: 1rem;
+    width: 42px;
+    height: 42px;
+  }
+
+  .monogram-badge {
+    padding: 0.4rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .wedding-proclamation {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+  }
+
+  .couple-title {
+    font-size: 2.15rem;
+    line-height: 1.2;
+  }
+
+  .tagline {
+    font-size: 1.05rem;
+  }
+
+  .countdown-grid {
+    gap: 0.5rem;
+  }
+
+  .card-inner {
+    border-radius: 12px;
+  }
+
+  .digit-value {
+    font-size: 1.75rem;
+  }
+
+  .card-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    margin-top: 0.4rem;
+  }
+
+  .action-buttons-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .dropdown-menu {
+    bottom: auto;
+    top: calc(100% + 8px);
+  }
+}
+
+/* Foldables / Extra narrow screens (< 360px) */
+@media (max-width: 350px) {
+  .couple-title {
+    font-size: 1.85rem;
+  }
+
+  .digit-value {
+    font-size: 1.45rem;
+  }
+}
