@@ -1,31 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <linearGradient id="mGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6e191d"/>
-      <stop offset="50%" stop-color="#4e0d10"/>
-      <stop offset="100%" stop-color="#2d0507"/>
+    <linearGradient id="goldPure" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5d0"/>
+      <stop offset="25%" stop-color="#f3b84f"/>
+      <stop offset="65%" stop-color="#c48524"/>
+      <stop offset="100%" stop-color="#935c13"/>
     </linearGradient>
-    <linearGradient id="gGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fff2c8"/>
-      <stop offset="35%" stop-color="#e2a845"/>
-      <stop offset="70%" stop-color="#b87b22"/>
-      <stop offset="100%" stop-color="#ffd772"/>
+    <linearGradient id="gemPure" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#d9f3fd"/>
+      <stop offset="100%" stop-color="#73d0ea"/>
     </linearGradient>
-    <filter id="glow">
-      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000000" flood-opacity="0.5"/>
+    <filter id="ringShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#5c1416" flood-opacity="0.5"/>
     </filter>
   </defs>
 
-  <!-- Rich Royal Maroon Squircle Tile -->
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#mGrad)" stroke="url(#gGrad)" stroke-width="2.5"/>
-  <rect x="5.5" y="5.5" width="53" height="53" rx="11" fill="none" stroke="#e2a845" stroke-width="0.8" opacity="0.6"/>
+  <g filter="url(#ringShadow)">
+    <!-- Right Gold Band -->
+    <circle cx="39" cy="36" r="15" fill="none" stroke="url(#goldPure)" stroke-width="5"/>
+    
+    <!-- Left Gold Band -->
+    <circle cx="25" cy="36" r="15" fill="none" stroke="url(#goldPure)" stroke-width="5"/>
 
-  <!-- Monogram text P & H in luxury serif -->
-  <g filter="url(#glow)">
-    <text x="32" y="41" font-family="'Playfair Display', 'Cinzel', Georgia, serif" font-size="24" font-weight="700" fill="url(#gGrad)" text-anchor="middle" letter-spacing="1">P&amp;H</text>
+    <!-- Overlapping weave for 3D interlocking -->
+    <path d="M 28 23 A 15 15 0 0 1 40 28" fill="none" stroke="url(#goldPure)" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Solitaire Diamond Crown -->
+    <polygon points="25,9 31,17 25,23 19,17" fill="url(#gemPure)" stroke="#ffffff" stroke-width="0.8"/>
+    <!-- Facet line -->
+    <polygon points="25,9 28,17 25,23 22,17" fill="#ffffff" opacity="0.65"/>
+
+    <!-- Brilliant Sparkle Star -->
+    <circle cx="25" cy="16" r="1.5" fill="#ffffff"/>
+    <line x1="25" y1="5" x2="25" y2="8" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="14" y1="16" x2="17" y2="16" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="33" y1="16" x2="36" y2="16" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
   </g>
-  <!-- Tiny delicate diamond crown motif above -->
-  <polygon points="32,13 34.5,17 32,20 29.5,17" fill="#ffffff" opacity="0.9"/>
-  <circle cx="25" cy="17" r="1" fill="#ffd772"/>
-  <circle cx="39" cy="17" r="1" fill="#ffd772"/>
 </svg>
