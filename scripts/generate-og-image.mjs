@@ -132,18 +132,35 @@ function compressPng(inputBuffer) {
 
 let generated = false;
 
-// Attempt 1: Try qlmanage or sips to render SVG
+// Attempt 0: Try rsvg-convert (fastest and highest quality SVG rasterizer)
 try {
-  execSync(`qlmanage -t -s 1200 -o /tmp "${svgPath}" && mv /tmp/og-preview.svg.png "${pngPath}"`, { stdio: 'ignore' });
+  execSync(`rsvg-convert -w 1200 -h 630 "${svgPath}" -o "${pngPath}"`, { stdio: 'ignore' });
   if (fs.existsSync(pngPath) && fs.statSync(pngPath).size > 1000) {
-    // Compress to ensure under 300KB
-    const rawBuf = fs.readFileSync(pngPath);
-    const optimizedBuf = compressPng(rawBuf);
-    fs.writeFileSync(pngPath, optimizedBuf);
+    if (fs.statSync(pngPath).size > 300 * 1024) {
+      const rawBuf = fs.readFileSync(pngPath);
+      const optimizedBuf = compressPng(rawBuf);
+      fs.writeFileSync(pngPath, optimizedBuf);
+    }
     generated = true;
   }
 } catch {
-  // qlmanage failed or not permitted
+  // rsvg-convert not available
+}
+
+// Attempt 1: Try qlmanage or sips to render SVG
+if (!generated) {
+  try {
+    execSync(`qlmanage -t -s 1200 -o /tmp "${svgPath}" && mv /tmp/og-preview.svg.png "${pngPath}"`, { stdio: 'ignore' });
+    if (fs.existsSync(pngPath) && fs.statSync(pngPath).size > 1000) {
+      // Compress to ensure under 300KB
+      const rawBuf = fs.readFileSync(pngPath);
+      const optimizedBuf = compressPng(rawBuf);
+      fs.writeFileSync(pngPath, optimizedBuf);
+      generated = true;
+    }
+  } catch {
+    // qlmanage failed or not permitted
+  }
 }
 
 // Fallback: Pure Node fallback if not generated

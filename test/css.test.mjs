@@ -7,9 +7,9 @@ import path from 'node:path';
 test('style.css defines Royal Kodava color tokens and glassmorphism', () => {
   const css = fs.readFileSync(path.resolve('css/style.css'), 'utf8');
 
-  assert.ok(css.includes('--color-emerald-deep'));
+  assert.ok(css.includes('--color-maroon-primary'));
   assert.ok(css.includes('--color-gold-primary'));
-  assert.ok(css.includes('--color-ivory'));
+  assert.ok(css.includes('--color-bg-base'));
   assert.ok(css.includes('backdrop-filter'));
   assert.ok(css.includes('font-variant-numeric: tabular-nums'));
 });

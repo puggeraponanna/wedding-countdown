@@ -1,37 +1,46 @@
 /* ==========================================================================
-   Royal Kodava Heritage & Gold Theme
-   Harshita & Ponanna Wedding Countdown
+   Royal Kodava Heritage & Invitation Warm Gold Theme
+   Ponanna & Harshita Wedding Countdown
    ========================================================================== */
 
 :root {
-  /* Color Palette */
-  --color-bg-dark: #04120b;
-  --color-emerald-deep: #071f14;
-  --color-emerald-rich: #0d2e1f;
-  --color-emerald-surface: rgba(13, 46, 31, 0.65);
+  /* Color Palette - extracted from Wedding Invitation */
+  --color-bg-base: #f7f1e5;
+  --color-bg-warm: #fcf9f2;
+  --color-bg-darker: #ede3d1;
   
-  --color-gold-light: #fdedb4;
-  --color-gold-primary: #d4af37;
-  --color-gold-rich: #b38b1d;
-  --color-gold-glow: rgba(212, 175, 55, 0.35);
+  /* Primary Royal Maroon */
+  --color-maroon-deep: #3d0c07;
+  --color-maroon-primary: #5c1416;
+  --color-maroon-rich: #781c1e;
+  --color-crimson: #990b2b;
 
-  --color-ivory: #fcfbf7;
-  --color-pearl: #d8d3c5;
-  --color-muted: #95a399;
+  /* Antique Champagne Gold */
+  --color-gold-light: #f7e6be;
+  --color-gold-primary: #c88d32;
+  --color-gold-deep: #966214;
+  --color-gold-glow: rgba(200, 141, 50, 0.25);
+
+  /* Neutrals & Text */
+  --color-espresso: #2d1b14;
+  --color-charcoal: #423028;
+  --color-muted: #786458;
+  --color-card-bg: rgba(255, 255, 255, 0.82);
+  --color-card-inner: rgba(255, 255, 255, 0.88);
 
   /* Typography */
-  --font-display: 'Cinzel Decorative', 'Playfair Display', Georgia, serif;
+  --font-display: 'Playfair Display', 'Cinzel Decorative', Georgia, serif;
   --font-serif: 'Playfair Display', Georgia, serif;
-  --font-digits: 'Cinzel', Georgia, serif;
+  --font-digits: 'Playfair Display', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing & Borders */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
-  --border-gold-subtle: 1px solid rgba(212, 175, 55, 0.3);
-  --border-gold-highlight: 1px solid rgba(253, 237, 180, 0.6);
-  --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.15);
+  --border-gold-subtle: 1px solid rgba(200, 141, 50, 0.3);
+  --border-gold-highlight: 1px solid rgba(200, 141, 50, 0.6);
+  --card-shadow: 0 10px 30px -5px rgba(92, 20, 22, 0.08), 0 2px 12px rgba(200, 141, 50, 0.1);
 }
 
 /* Global Reset */
@@ -50,8 +59,8 @@ html {
 body {
   min-height: 100vh;
   min-height: 100svh;
-  background: radial-gradient(circle at 50% 25%, #0f3825 0%, #071f14 55%, #04120b 100%);
-  color: var(--color-ivory);
+  background: radial-gradient(circle at 50% 15%, #ffffff 0%, #fbf6ee 45%, #f2e7d5 100%);
+  color: var(--color-espresso);
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
@@ -76,7 +85,7 @@ body {
   z-index: 2;
   max-width: 900px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 3rem;
+  padding: 2rem 1.5rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,11 +100,11 @@ body {
   top: 1.5rem;
   right: 1.5rem;
   z-index: 10;
-  background: rgba(13, 46, 31, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: var(--border-gold-subtle);
-  color: var(--color-gold-light);
+  border: 1px solid rgba(200, 141, 50, 0.4);
+  color: var(--color-gold-deep);
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -103,7 +112,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(92, 20, 22, 0.08);
   transition: all 0.3s ease;
 }
 
@@ -114,7 +123,7 @@ body {
 }
 
 .audio-toggle .sound-wave {
-  opacity: 0.3;
+  opacity: 0.35;
   transition: opacity 0.3s ease;
 }
 
@@ -140,53 +149,48 @@ body {
 .hero-header {
   text-align: center;
   margin-bottom: 2rem;
-}
-
-.monogram-badge {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0.5rem 1.25rem;
-  background: rgba(7, 31, 20, 0.8);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  border-radius: 30px;
+}
+
+.hero-illustration-wrapper {
   margin-bottom: 1.25rem;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+  display: flex;
+  justify-content: center;
 }
 
-.monogram-letter {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--color-gold-light);
+.hero-illustration {
+  max-width: 320px;
+  width: 82%;
+  height: auto;
+  filter: drop-shadow(0 10px 25px rgba(92, 20, 22, 0.12));
+  animation: gentleFloat 4s ease-in-out infinite alternate;
 }
 
-.monogram-amp {
-  font-family: var(--font-serif);
-  font-size: 0.85rem;
-  color: var(--color-gold-primary);
-  font-style: italic;
+@keyframes gentleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
 }
 
 .wedding-proclamation {
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  color: var(--color-pearl);
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  color: var(--color-gold-deep);
   text-transform: uppercase;
-  margin-bottom: 0.6rem;
-  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .couple-title {
-  font-family: var(--font-display);
-  font-size: 3.5rem;
+  font-family: var(--font-serif);
+  font-size: 3.8rem;
   font-weight: 700;
+  font-style: italic;
   line-height: 1.15;
-  background: linear-gradient(135deg, #ffffff 0%, #fdedb4 35%, #d4af37 75%, #aa7c11 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  color: var(--color-maroon-primary);
+  text-shadow: 0 2px 10px rgba(92, 20, 22, 0.12);
   margin-bottom: 0.5rem;
 }
 
@@ -194,17 +198,8 @@ body {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  margin: 0 0.5rem;
-  -webkit-text-fill-color: var(--color-gold-primary);
-}
-
-.tagline {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-style: italic;
-  color: var(--color-pearl);
-  letter-spacing: 0.05em;
-  margin-bottom: 1.25rem;
+  margin: 0 0.4rem;
+  color: var(--color-gold-primary);
 }
 
 .ornate-divider {
@@ -213,19 +208,19 @@ body {
   justify-content: center;
   gap: 1rem;
   width: 220px;
-  margin: 0 auto;
+  margin: 0.5rem auto 1rem;
 }
 
 .ornate-divider .line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(200, 141, 50, 0.6), transparent);
 }
 
-.ornate-divider .flower-symbol {
+.ornate-divider .diamond-symbol {
   color: var(--color-gold-primary);
-  font-size: 0.8rem;
-  filter: drop-shadow(0 0 5px var(--color-gold-primary));
+  font-size: 0.85rem;
+  filter: drop-shadow(0 0 3px rgba(200, 141, 50, 0.4));
 }
 
 /* Countdown Grid */
@@ -251,15 +246,15 @@ body {
 .card-inner {
   width: 100%;
   aspect-ratio: 1 / 1.05;
-  background: var(--color-emerald-surface);
+  background: var(--color-card-inner);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: var(--border-gold-subtle);
+  border: 1px solid rgba(200, 141, 50, 0.35);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 8px 25px -4px rgba(92, 20, 22, 0.08), 0 2px 10px rgba(200, 141, 50, 0.12);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -272,14 +267,14 @@ body {
   left: 0;
   right: 0;
   height: 45%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
   pointer-events: none;
 }
 
 .card-inner:hover {
   transform: translateY(-4px);
   border-color: var(--color-gold-primary);
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px var(--color-gold-glow);
+  box-shadow: 0 16px 35px -6px rgba(92, 20, 22, 0.14), 0 0 20px var(--color-gold-glow);
 }
 
 .digit-value {
@@ -287,29 +282,28 @@ body {
   font-size: 3.25rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: #ffffff;
-  text-shadow: 0 0 25px rgba(212, 175, 55, 0.5), 0 2px 10px rgba(0, 0, 0, 0.8);
+  color: var(--color-maroon-primary);
+  text-shadow: 0 1px 3px rgba(92, 20, 22, 0.15);
   letter-spacing: -0.02em;
 }
 
 .card-label {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.25em;
-  color: var(--color-gold-light);
+  letter-spacing: 0.22em;
+  color: var(--color-gold-deep);
   margin-top: 0.75rem;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 /* Celebration Banner */
 .celebration-banner {
-  background: rgba(13, 46, 31, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   border: 2px solid var(--color-gold-primary);
   border-radius: var(--radius-md);
   padding: 2.5rem 1.5rem;
   text-align: center;
-  box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 40px rgba(200, 141, 50, 0.25);
   animation: celebrationPulse 2s infinite ease-in-out;
 }
 
@@ -324,9 +318,9 @@ body {
 }
 
 .celebration-banner h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
   font-size: 2.25rem;
-  color: var(--color-gold-light);
+  color: var(--color-maroon-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -338,13 +332,13 @@ body {
 }
 
 .glass-card {
-  background: var(--color-emerald-surface);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: var(--border-gold-subtle);
+  border: 1px solid rgba(200, 141, 50, 0.35);
   border-radius: var(--radius-lg);
   padding: 1.75rem 2rem;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 12px 35px -5px rgba(92, 20, 22, 0.08), 0 3px 12px rgba(200, 141, 50, 0.1);
 }
 
 .detail-row {
@@ -357,9 +351,9 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.12);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  color: var(--color-gold-light);
+  background: rgba(200, 141, 50, 0.12);
+  border: 1px solid rgba(200, 141, 50, 0.4);
+  color: var(--color-gold-deep);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -368,20 +362,21 @@ body {
 
 .detail-heading {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--color-ivory);
+  color: var(--color-espresso);
   margin-bottom: 0.15rem;
 }
 
 .detail-sub {
-  font-size: 0.9rem;
-  color: var(--color-pearl);
+  font-size: 0.95rem;
+  color: var(--color-maroon-rich);
+  font-weight: 500;
 }
 
 .card-separator {
   height: 1px;
-  background: rgba(212, 175, 55, 0.18);
+  background: rgba(200, 141, 50, 0.2);
   margin: 1.25rem 0;
 }
 
@@ -394,15 +389,15 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--color-gold-light);
-  font-size: 0.85rem;
-  font-weight: 500;
+  color: var(--color-gold-deep);
+  font-size: 0.88rem;
+  font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .btn-link:hover {
-  color: #ffffff;
+  color: var(--color-maroon-primary);
   transform: translateX(3px);
 }
 
@@ -438,30 +433,27 @@ body {
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, #fdedb4 0%, #d4af37 60%, #aa7c11 100%);
-  color: #051910;
-  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+  background: linear-gradient(135deg, #f7e2af 0%, #c88d32 60%, #966214 100%);
+  color: #2d1406;
+  box-shadow: 0 4px 18px rgba(200, 141, 50, 0.35);
 }
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.55);
+  box-shadow: 0 8px 25px rgba(200, 141, 50, 0.5);
 }
 
 .btn-emerald {
-  background: rgba(13, 46, 31, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.45);
-  color: var(--color-ivory);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #781c1e 0%, #521213 100%);
+  border: 1px solid rgba(200, 141, 50, 0.45);
+  color: #fdfbf7;
+  box-shadow: 0 4px 18px rgba(92, 20, 22, 0.25);
 }
 
 .btn-emerald:hover {
   transform: translateY(-2px);
-  border-color: var(--color-gold-primary);
-  color: var(--color-gold-light);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px var(--color-gold-glow);
+  background: linear-gradient(135deg, #8a2123 0%, #5e1516 100%);
+  box-shadow: 0 8px 25px rgba(92, 20, 22, 0.35);
 }
 
 /* Calendar Dropdown */
@@ -476,13 +468,13 @@ body {
   bottom: calc(100% + 10px);
   left: 0;
   right: 0;
-  background: rgba(7, 31, 20, 0.95);
+  background: rgba(255, 253, 248, 0.98);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: var(--border-gold-subtle);
+  border: 1px solid rgba(200, 141, 50, 0.35);
   border-radius: var(--radius-md);
   padding: 0.5rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 12px 30px rgba(92, 20, 22, 0.12);
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -496,9 +488,10 @@ body {
   background: transparent;
   border: none;
   border-radius: var(--radius-sm);
-  color: var(--color-ivory);
+  color: var(--color-espresso);
   font-family: var(--font-body);
   font-size: 0.85rem;
+  font-weight: 500;
   text-align: left;
   text-decoration: none;
   cursor: pointer;
@@ -506,8 +499,8 @@ body {
 }
 
 .dropdown-item:hover {
-  background: rgba(212, 175, 55, 0.15);
-  color: var(--color-gold-light);
+  background: rgba(200, 141, 50, 0.15);
+  color: var(--color-maroon-primary);
 }
 
 /* Footer */
@@ -519,9 +512,10 @@ body {
 .coorg-badge {
   font-family: var(--font-serif);
   font-size: 0.95rem;
-  color: var(--color-gold-light);
+  color: var(--color-gold-deep);
   letter-spacing: 0.08em;
   margin-bottom: 0.25rem;
+  font-weight: 600;
 }
 
 .copyright {

@@ -6,18 +6,19 @@ export const PARTICLE_CONFIG = {
 };
 
 export function createParticle(width, height) {
-  const isPetal = Math.random() > 0.65;
+  const isPetal = Math.random() > 0.6;
   return {
     type: isPetal ? 'petal' : 'sparkle',
+    isRose: Math.random() > 0.4, // Rose/vermilion vs cream jasmine
     x: Math.random() * width,
     y: Math.random() * height,
     size: isPetal ? Math.random() * 5 + 4 : Math.random() * 2.5 + 1,
     speedY: Math.random() * 0.7 + 0.3,
     speedX: Math.sin(Math.random() * Math.PI * 2) * 0.4,
-    opacity: Math.random() * 0.6 + 0.25,
+    opacity: Math.random() * 0.5 + 0.3,
     rotation: Math.random() * 360,
     rotationSpeed: (Math.random() - 0.5) * 1.5,
-    hue: isPetal ? 45 : 42, // Warm cream / golden jasmine
+    hue: isPetal ? 45 : 42,
   };
 }
 
@@ -66,19 +67,24 @@ export function initParticles(canvas) {
       ctx.globalAlpha = p.opacity;
 
       if (p.type === 'sparkle') {
-        // Glowing gold ember
+        // Glowing warm amber-gold ember
         const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, p.size * 2);
-        gradient.addColorStop(0, 'rgba(255, 245, 200, 1)');
-        gradient.addColorStop(0.5, 'rgba(212, 175, 55, 0.7)');
-        gradient.addColorStop(1, 'rgba(212, 175, 55, 0)');
+        gradient.addColorStop(0, 'rgba(212, 155, 60, 0.9)');
+        gradient.addColorStop(0.5, 'rgba(200, 141, 50, 0.45)');
+        gradient.addColorStop(1, 'rgba(200, 141, 50, 0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(0, 0, p.size * 2, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        // Delicate jasmine/rose petal
-        ctx.fillStyle = 'rgba(255, 252, 240, 0.85)';
-        ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
+        // Delicate rose/crimson or warm cream petal
+        if (p.isRose) {
+          ctx.fillStyle = 'rgba(195, 45, 65, 0.45)';
+          ctx.strokeStyle = 'rgba(160, 25, 45, 0.25)';
+        } else {
+          ctx.fillStyle = 'rgba(255, 248, 230, 0.85)';
+          ctx.strokeStyle = 'rgba(200, 141, 50, 0.35)';
+        }
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.ellipse(0, 0, p.size * 1.4, p.size * 0.7, 0, 0, Math.PI * 2);

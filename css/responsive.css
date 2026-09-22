@@ -8,6 +8,10 @@
     padding: 2rem 1rem 2.5rem;
   }
 
+  .hero-illustration {
+    max-width: 270px;
+  }
+
   .couple-title {
     font-size: 2.75rem;
   }
@@ -30,7 +34,7 @@
   }
 
   .detail-heading {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }
 
@@ -47,23 +51,22 @@
     height: 42px;
   }
 
-  .monogram-badge {
-    padding: 0.4rem 1rem;
-    margin-bottom: 0.75rem;
+  .hero-illustration-wrapper {
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-illustration {
+    max-width: 220px;
   }
 
   .wedding-proclamation {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
   }
 
   .couple-title {
-    font-size: 2.15rem;
+    font-size: 2.3rem;
     line-height: 1.2;
-  }
-
-  .tagline {
-    font-size: 1.05rem;
   }
 
   .countdown-grid {
@@ -103,8 +106,12 @@
 
 /* Foldables / Extra narrow screens (< 360px) */
 @media (max-width: 350px) {
+  .hero-illustration {
+    max-width: 180px;
+  }
+
   .couple-title {
-    font-size: 1.85rem;
+    font-size: 1.9rem;
   }
 
   .digit-value {
