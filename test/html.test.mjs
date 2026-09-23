@@ -43,6 +43,7 @@ test('index.html contains Traditional Coorg Sacred Hanging Lamp (Thook Bolcha) c
   assert.ok(html.includes('lamp-callout'), 'Must have interactive callout badge');
   assert.ok(html.includes('Thook Bolcha'), 'Must reference Thook Bolcha');
   assert.ok(html.includes('id="reopen-ceremony-btn"'), 'Must have relight lamp button in header');
+  assert.ok(html.includes('goddess-lakshmi'), 'Lamp must feature idol of Goddess Lakshmi');
   assert.ok(html.includes('css/lamp.css'), 'Must link lamp.css');
 });
 

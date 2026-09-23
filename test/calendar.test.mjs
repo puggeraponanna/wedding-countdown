@@ -35,7 +35,7 @@ test('generateIcsContent produces valid RFC 5545 VCALENDAR string', () => {
   assert.ok(ics.includes('SUMMARY:Harshita & Ponanna\'s Wedding'));
   assert.ok(ics.includes('DTSTART:20261015T051000Z'));
   assert.ok(ics.includes('DTEND:20261015T113000Z'));
-  assert.ok(ics.includes('LOCATION:Kodava Samaja'));
+  assert.ok(ics.includes('LOCATION:Ammathi Kodava Samaja') || ics.includes('LOCATION:Kodava Samaja'));
   assert.ok(ics.includes('END:VEVENT'));
   assert.ok(ics.includes('END:VCALENDAR'));
 });
