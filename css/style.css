@@ -278,6 +278,7 @@ body {
   color: var(--color-maroon-primary);
   text-shadow: 0 2px 10px rgba(92, 20, 22, 0.12);
   margin-bottom: 0.5rem;
+  white-space: nowrap;
 }
 
 .couple-title .conjunction {
@@ -427,59 +428,179 @@ body {
   box-shadow: 0 12px 35px -5px rgba(92, 20, 22, 0.08), 0 3px 12px rgba(200, 141, 50, 0.1);
 }
 
-.detail-row {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.detail-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(200, 141, 50, 0.12);
-  border: 1px solid rgba(200, 141, 50, 0.4);
-  color: var(--color-gold-deep);
+/* Card Section Headers */
+.card-section-header {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.15rem;
+}
+
+.section-ornament {
+  color: var(--color-gold-primary);
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-deep);
+}
+
+/* Ceremonies List */
+.ceremonies-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.ceremony-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: 340px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Date Badge */
+.date-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 58px;
+  background: linear-gradient(145deg, rgba(92, 20, 22, 0.07) 0%, rgba(200, 141, 50, 0.14) 100%);
+  border: 1.5px solid rgba(200, 141, 50, 0.45);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(92, 20, 22, 0.05);
   flex-shrink: 0;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.badge-month {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--color-gold-deep);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.badge-day {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-maroon-primary);
+  line-height: 1;
+}
+
+.detail-info {
+  flex: 1;
+  text-align: left;
 }
 
 .detail-heading {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.28rem;
   font-weight: 600;
-  color: var(--color-espresso);
-  margin-bottom: 0.15rem;
+  color: var(--color-maroon-primary);
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
 }
 
 .detail-sub {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--color-maroon-rich);
   font-weight: 500;
+  line-height: 1.35;
 }
 
-.card-separator {
+/* Ornate Separator */
+.card-ornate-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 1.5rem 0 1.25rem;
+}
+
+.card-ornate-separator .sep-line {
+  flex: 1;
   height: 1px;
-  background: rgba(200, 141, 50, 0.2);
-  margin: 1.25rem 0;
+  background: linear-gradient(90deg, transparent, rgba(200, 141, 50, 0.45), transparent);
+}
+
+.card-ornate-separator .sep-diamond {
+  color: var(--color-gold-primary);
+  font-size: 0.8rem;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 2px rgba(200, 141, 50, 0.3));
+}
+
+/* Venue Block */
+.venue-block {
+  text-align: center;
+}
+
+.venue-name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-maroon-primary);
+  margin-bottom: 0.25rem;
+  line-height: 1.25;
+}
+
+.venue-address {
+  font-size: 0.95rem;
+  color: var(--color-espresso);
+  font-weight: 500;
+  margin-bottom: 1.15rem;
+  line-height: 1.4;
 }
 
 .venue-action {
-  margin-top: 1.25rem;
-  text-align: right;
+  display: flex;
+  justify-content: center;
 }
 
-.btn-link {
+.btn-venue-map {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  gap: 0.55rem;
+  background: rgba(200, 141, 50, 0.08);
+  border: 1.5px solid rgba(200, 141, 50, 0.5);
   color: var(--color-gold-deep);
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
   font-size: 0.88rem;
   font-weight: 600;
+  letter-spacing: 0.03em;
   text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(200, 141, 50, 0.1);
+}
+
+.btn-venue-map:hover,
+.btn-venue-map:focus-visible {
+  background: linear-gradient(135deg, var(--color-gold-primary), var(--color-gold-deep));
+  color: #fffdf9;
+  border-color: var(--color-gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(200, 141, 50, 0.28);
 }
 
 .btn-link:hover {

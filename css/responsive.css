@@ -74,8 +74,13 @@
   }
 
   .couple-title {
-    font-size: 2.3rem;
+    font-size: clamp(1.4rem, 6.2vw, 2.05rem);
     line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .couple-title .conjunction {
+    margin: 0 0.25rem;
   }
 
   .countdown-grid {
@@ -101,6 +106,52 @@
     gap: 0.75rem;
   }
 
+  .details-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .ceremony-row {
+    width: 100%;
+    max-width: 320px;
+    gap: 1rem;
+  }
+
+  .date-badge {
+    width: 48px;
+    height: 52px;
+  }
+
+  .badge-month {
+    font-size: 0.58rem;
+  }
+
+  .badge-day {
+    font-size: 1.32rem;
+  }
+
+  .detail-heading {
+    font-size: 1.12rem;
+  }
+
+  .detail-sub {
+    font-size: 0.85rem;
+  }
+
+  .venue-name {
+    font-size: 1.18rem;
+  }
+
+  .venue-address {
+    font-size: 0.88rem;
+    margin-bottom: 0.95rem;
+  }
+
+  .btn-venue-map {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.84rem;
+  }
+
   .btn {
     width: 100%;
     padding: 0.85rem 1.25rem;
@@ -120,7 +171,8 @@
   }
 
   .couple-title {
-    font-size: 1.9rem;
+    font-size: clamp(1.2rem, 5.8vw, 1.45rem);
+    white-space: nowrap;
   }
 
   .digit-value {

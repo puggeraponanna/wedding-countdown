@@ -29,3 +29,29 @@ test('index.html has couple illustration, countdown elements and calendar button
   assert.ok(html.includes('id="whatsapp-share"'));
   assert.ok(html.includes('Kodava Samaja'));
 });
+
+test('index.html contains Traditional Coorg Sacred Hanging Lamp (Thook Bolcha) ceremonial overlay', () => {
+  const html = fs.readFileSync(path.resolve('index.html'), 'utf8');
+
+  assert.ok(html.includes('id="ceremony-overlay"'), 'Must have ceremony overlay container');
+  assert.ok(html.includes('curtain-left'), 'Must have left curtain panel');
+  assert.ok(html.includes('curtain-right'), 'Must have right curtain panel');
+  assert.ok(html.includes('id="sacred-lamp"'), 'Must have sacred lamp button container');
+  assert.ok(html.includes('lamp-hanging-chain'), 'Must have hanging chain from ceiling');
+  assert.ok(html.includes('lamp-svg'), 'Must have brass lamp SVG');
+  assert.ok(html.includes('lamp-flame'), 'Must have lamp flame element');
+  assert.ok(html.includes('lamp-callout'), 'Must have interactive callout badge');
+  assert.ok(html.includes('Thook Bolcha'), 'Must reference Thook Bolcha');
+  assert.ok(html.includes('id="reopen-ceremony-btn"'), 'Must have relight lamp button in header');
+  assert.ok(html.includes('css/lamp.css'), 'Must link lamp.css');
+});
+
+test('details section displays ceremonies and venue without muhurtha', () => {
+  const html = fs.readFileSync(path.resolve('index.html'), 'utf8');
+
+  assert.ok(!html.toLowerCase().includes('muhurtha'), 'Must not contain the word muhurtha');
+  assert.ok(html.includes('Oorkuduva Ceremony'), 'Must include Oorkuduva Ceremony');
+  assert.ok(html.includes('Wedding Ceremony'), 'Must include Wedding Ceremony');
+  assert.ok(html.includes('Ammathi Kodava Samaja'), 'Must include Ammathi Kodava Samaja');
+});
+

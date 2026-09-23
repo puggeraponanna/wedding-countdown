@@ -1,0 +1,451 @@
+/* ==========================================================================
+   Traditional Coorg Sacred Hanging Lamp (Thook Bolcha) Ceremonial Entrance
+   Harshita & Ponanna Wedding Countdown
+   ========================================================================== */
+
+/* Full-Screen Ceremonial Overlay */
+.ceremony-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: visibility 1.4s ease;
+}
+
+.ceremony-overlay.hidden {
+  display: none !important;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Majestic Royal Curtains / Gates (Parting to both sides)
+   ========================================================================== */
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  transition: transform 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+  overflow: hidden;
+}
+
+.curtain-left {
+  left: 0;
+  background: linear-gradient(145deg, #440a0e 0%, #2d0508 60%, #190204 100%);
+  border-right: none;
+  box-shadow: inset -15px 0 35px rgba(0, 0, 0, 0.7);
+  transform: translateX(0);
+}
+
+.curtain-right {
+  right: 0;
+  background: linear-gradient(-145deg, #440a0e 0%, #2d0508 60%, #190204 100%);
+  border-left: none;
+  box-shadow: inset 15px 0 35px rgba(0, 0, 0, 0.7);
+  transform: translateX(0);
+}
+
+/* Subtle traditional gold embroidery texture on curtains */
+.curtain-left::after,
+.curtain-right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(212, 175, 55, 0.16) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Unfurl Action: Slide Curtains to Both Sides */
+.ceremony-overlay.is-unfurling .curtain-left {
+  transform: translateX(-100%);
+}
+
+.ceremony-overlay.is-unfurling .curtain-right {
+  transform: translateX(100%);
+}
+
+/* ==========================================================================
+   Center Sacred Hanging Lamp Stage (Thook Bolcha)
+   ========================================================================== */
+.ceremony-lamp-stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 0.8s 0.3s ease, transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: top center;
+  animation: gentleHangingSway 6.5s ease-in-out infinite alternate;
+  padding: 1rem;
+}
+
+/* Gentle atmospheric pendulum sway of the suspended brass lamp */
+@keyframes gentleHangingSway {
+  0% {
+    transform: rotate(-0.6deg);
+  }
+  100% {
+    transform: rotate(0.6deg);
+  }
+}
+
+/* Fade out lamp gracefully in place when unfurling */
+.ceremony-overlay.is-unfurling .ceremony-lamp-stage {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Sacred Lamp Interactive Button */
+.sacred-lamp-trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0.5rem 1.5rem 1rem;
+  border-radius: 28px;
+  transform: none;
+  transition: opacity 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sacred-lamp-trigger:not(.is-lit):hover {
+    transform: none;
+  }
+}
+
+.sacred-lamp-trigger.is-lit {
+  transform: none !important;
+}
+
+.sacred-lamp-trigger:focus-visible {
+  outline: 3px solid var(--color-gold-primary);
+  outline-offset: 8px;
+}
+
+/* Lamp Visual Assembly */
+.lamp-visual {
+  position: relative;
+  width: 170px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Hanging Brass Chain Descending from Ceiling */
+.lamp-hanging-chain {
+  position: absolute;
+  top: -100vh;
+  bottom: calc(100% - 73px);
+  width: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: 14px 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='22' viewBox='0 0 14 22'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='14' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23543003'/%3E%3Cstop offset='30%25' stop-color='%23d4af37'/%3E%3Cstop offset='60%25' stop-color='%23fff5b8'/%3E%3Cstop offset='100%25' stop-color='%23422302'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='0' width='6' height='14' rx='3' fill='none' stroke='url(%23g)' stroke-width='2.6'/%3E%3Cellipse cx='7' cy='16' rx='2.2' ry='4.5' fill='url(%23g)' stroke='%23422302' stroke-width='0.6'/%3E%3C/svg%3E");
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* The SVG Brass Lamp */
+.lamp-svg {
+  width: 170px;
+  height: 250px;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.65));
+  transition: filter 0.6s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.sacred-lamp-trigger.is-lit .lamp-svg {
+  filter: drop-shadow(0 10px 32px rgba(255, 179, 0, 0.75)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+/* Flame Container Positioned on the Cotton Wick inside the Arch */
+.lamp-flame-wrapper {
+  position: absolute;
+  bottom: 59px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 54px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Unlit Sparkle Prompt State */
+.lamp-flame-ember {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #fff3a8 30%, #ffd700 70%, #c88d32 100%);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.95), 0 0 32px rgba(255, 179, 0, 0.7);
+  animation: emberBreathe 1.8s infinite ease-in-out;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+@keyframes emberBreathe {
+  0%, 100% {
+    transform: translateX(-50%) scale(0.9);
+    opacity: 0.75;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.35);
+    opacity: 1;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 1), 0 0 45px rgba(255, 179, 0, 0.85);
+  }
+}
+
+/* Hide unlit ember completely when lit */
+.sacred-lamp-trigger.is-lit .lamp-flame-ember {
+  display: none !important;
+  animation: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* The Glorious Sacred Flame (Lit State) */
+.lamp-flame {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 22px;
+  height: 46px;
+  background: radial-gradient(ellipse at 50% 70%, #ffffff 0%, #fff7b8 20%, #ffb703 55%, #e65100 85%, transparent 100%);
+  border-radius: 50% 50% 35% 35% / 80% 80% 20% 20%;
+  box-shadow: 
+    0 0 22px rgba(255, 240, 150, 0.95),
+    0 0 44px rgba(255, 183, 3, 0.85),
+    0 0 70px rgba(230, 81, 0, 0.7);
+  transform-origin: bottom center;
+  transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  opacity: 0;
+}
+
+.sacred-lamp-trigger.is-lit .lamp-flame {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  animation: flameFlicker 2.6s infinite ease-in-out;
+}
+
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: translateX(-50%) scale(1) rotate(-1.5deg);
+    border-radius: 50% 50% 35% 35% / 80% 80% 20% 20%;
+    box-shadow: 0 0 22px rgba(255, 240, 150, 0.95), 0 0 45px rgba(255, 183, 3, 0.85), 0 0 70px rgba(230, 81, 0, 0.7);
+  }
+  25% {
+    transform: translateX(-50%) scale(1.06, 0.95) rotate(2deg);
+    border-radius: 48% 52% 33% 37% / 78% 82% 18% 22%;
+    box-shadow: 0 0 26px rgba(255, 245, 170, 1), 0 0 50px rgba(255, 183, 3, 0.9), 0 0 75px rgba(230, 81, 0, 0.75);
+  }
+  50% {
+    transform: translateX(-50%) scale(0.95, 1.05) rotate(-0.5deg);
+    border-radius: 52% 48% 37% 33% / 82% 78% 22% 18%;
+    box-shadow: 0 0 20px rgba(255, 235, 130, 0.9), 0 0 42px rgba(255, 183, 3, 0.8), 0 0 65px rgba(230, 81, 0, 0.6);
+  }
+  75% {
+    transform: translateX(-50%) scale(1.04, 0.97) rotate(1.2deg);
+    border-radius: 50% 50% 35% 35% / 80% 80% 20% 20%;
+    box-shadow: 0 0 24px rgba(255, 240, 150, 0.95), 0 0 48px rgba(255, 183, 3, 0.85), 0 0 72px rgba(230, 81, 0, 0.7);
+  }
+}
+
+/* Ambient Radial Light Wash */
+.lamp-flame-glow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.45) 0%, rgba(255, 152, 0, 0.22) 50%, transparent 75%);
+  transition: transform 0.7s ease, opacity 0.7s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sacred-lamp-trigger.is-lit .lamp-flame-glow {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  animation: auraPulse 3s infinite ease-in-out;
+}
+
+@keyframes auraPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.45; }
+  50% { transform: translateX(-50%) scale(1.18); opacity: 0.65; }
+}
+
+/* Interactive Callout Badge under Lamp */
+.lamp-callout {
+  margin-top: 1rem;
+  min-height: 44px;
+  box-sizing: border-box;
+  background: rgba(30, 5, 8, 0.85);
+  border: 1px solid rgba(247, 230, 190, 0.55);
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 25px rgba(200, 141, 50, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  max-width: 90vw;
+  transition: opacity 0.4s ease, visibility 0.4s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sacred-lamp-trigger:not(.is-lit):hover .lamp-callout {
+    transform: none;
+    background: rgba(45, 8, 12, 0.95);
+    border-color: rgba(247, 230, 190, 0.9);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6), 0 0 30px rgba(200, 141, 50, 0.5);
+  }
+}
+
+.sacred-lamp-trigger.is-lit .lamp-callout {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: none !important;
+}
+
+.lamp-instruction {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  letter-spacing: 0.02em;
+}
+
+.lamp-sparkle-icon {
+  display: inline-block;
+  animation: sparkleTwinkle 1.6s infinite ease-in-out;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.3) rotate(15deg); opacity: 1; }
+}
+
+/* ==========================================================================
+   Header Reopen Lamp Button (Relight / Re-open Ceremonial Curtains)
+   ========================================================================== */
+.btn-lamp-reopen {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(200, 141, 50, 0.5);
+  color: var(--color-maroon-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(92, 20, 22, 0.12);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.btn-lamp-reopen:hover {
+  background: #ffffff;
+  transform: translateY(-2px) scale(1.08);
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 6px 20px rgba(200, 141, 50, 0.35);
+  color: var(--color-maroon-rich);
+}
+
+.btn-lamp-reopen .tooltip-text {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--color-maroon-deep);
+  color: var(--color-gold-light);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.btn-lamp-reopen:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   Mobile Phone Screen Responsiveness (< 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .lamp-visual {
+    width: 145px;
+    height: 214px;
+  }
+
+  .lamp-svg {
+    width: 145px;
+    height: 214px;
+  }
+
+  .lamp-hanging-chain {
+    bottom: calc(100% - 63px);
+    width: 12px;
+    background-size: 12px 19px;
+  }
+
+  .lamp-flame-wrapper {
+    bottom: 50px;
+  }
+
+  .lamp-flame {
+    width: 19px;
+    height: 38px;
+  }
+
+  .lamp-instruction {
+    font-size: 0.82rem;
+  }
+
+  .lamp-callout {
+    min-height: 40px;
+    padding: 0.45rem 1rem;
+    margin-top: 0.75rem;
+  }
+}

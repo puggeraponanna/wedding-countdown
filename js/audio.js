@@ -4,9 +4,11 @@ export const WEDDING_MUSIC_TRACK = {
   id: 'valaga-eravatt',
   name: 'Kodava Valaga',
   subtitle: 'Traditional Eravaat Instrumental',
-  src: 'assets/wedding-music.m4a',
-  fallbackSrc: 'assets/wedding-music.ogg',
+  src: 'assets/wedding-music.m4a?v=2',
+  fallbackSrc: 'assets/wedding-music.ogg?v=2',
 };
+
+export const DEFAULT_TARGET_VOLUME = 0.20;
 
 export function createAudioState() {
   let playing = false;
@@ -64,10 +66,11 @@ export function initAudio({ buttonElement, statusElement }) {
     return audioElement;
   }
 
-  function fadeIn(audio, targetVolume = 0.8, durationMs = 1200) {
+  function fadeIn(audio, targetVolume = DEFAULT_TARGET_VOLUME, durationMs = 1200) {
     if (fadeInterval) clearInterval(fadeInterval);
-    audio.volume = 0.05;
-    const step = (targetVolume - 0.05) / (durationMs / 50);
+    const startVolume = Math.min(0.02, targetVolume);
+    audio.volume = startVolume;
+    const step = (targetVolume - startVolume) / (durationMs / 50);
     fadeInterval = setInterval(() => {
       if (audio.volume + step >= targetVolume) {
         audio.volume = targetVolume;
@@ -82,7 +85,7 @@ export function initAudio({ buttonElement, statusElement }) {
     if (fadeInterval) clearInterval(fadeInterval);
     const step = audio.volume / (durationMs / 50);
     fadeInterval = setInterval(() => {
-      if (audio.volume - step <= 0.05) {
+      if (audio.volume - step <= 0.02) {
         audio.volume = 0;
         clearInterval(fadeInterval);
         if (typeof callback === 'function') callback();

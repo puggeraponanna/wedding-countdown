@@ -1,7 +1,11 @@
 // test/audio.test.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createAudioState, WEDDING_MUSIC_TRACK, enableAutoPlayOnInteraction } from '../js/audio.js';
+import { createAudioState, WEDDING_MUSIC_TRACK, enableAutoPlayOnInteraction, DEFAULT_TARGET_VOLUME } from '../js/audio.js';
+
+test('DEFAULT_TARGET_VOLUME is configured to a subtle ambient level', () => {
+  assert.ok(DEFAULT_TARGET_VOLUME > 0 && DEFAULT_TARGET_VOLUME <= 0.4, `Volume ${DEFAULT_TARGET_VOLUME} is subtle`);
+});
 
 test('createAudioState manages play and mute transitions', () => {
   const state = createAudioState();

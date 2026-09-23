@@ -36,15 +36,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/responsive.css?v=4" />
+  <link rel="stylesheet" href="css/lamp.css?v=4" />
 </head>
 <body>
   <!-- Canvas for floating gold embers & jasmine petals -->
   <canvas id="particles-canvas" class="particles-bg" aria-hidden="true"></canvas>
 
-  <!-- Ambient Audio Floating Toggle & Hint -->
+  <!-- Ambient Audio Floating Toggle & Lamp Relight -->
   <div class="audio-control-container">
+    <button id="reopen-ceremony-btn" class="btn-lamp-reopen" aria-label="Relight the sacred Thook Bolcha" title="Relight Thook Bolcha">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 1v5"></path>
+        <circle cx="12" cy="7.5" r="1.5"></circle>
+        <path d="M4 17a8 8 0 0 1 16 0"></path>
+        <path d="M5 17h14v2a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"></path>
+        <path d="M12 11c.8 1.5.8 2.5 0 3.5c-.8-.8-.8-2 0-3.5z" fill="currentColor"></path>
+      </svg>
+      <span class="tooltip-text">Thook Bolcha</span>
+    </button>
     <button id="audio-toggle" class="audio-toggle" aria-label="Toggle ambient music" aria-pressed="false" title="Play ambient melody">
       <svg class="icon-speaker" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -56,6 +67,189 @@
     <div id="audio-pill" class="audio-pill" role="button" tabindex="0" aria-label="Play wedding music">
       <span class="audio-pill-icon">🎵</span>
       <span id="audio-pill-text" class="audio-pill-text">Click anywhere for music</span>
+    </div>
+  </div>
+
+  <!-- Full-Screen Ceremonial Entrance (Unfurling Curtains with Sacred Lamp) -->
+  <div id="ceremony-overlay" class="ceremony-overlay" role="dialog" aria-modal="true" aria-label="Sacred Wedding Entrance">
+    <!-- Left Royal Curtain -->
+    <div class="curtain-panel curtain-left"></div>
+
+    <!-- Right Royal Curtain -->
+    <div class="curtain-panel curtain-right"></div>
+
+    <!-- Center Sacred Hanging Lamp Stage (Thook Bolcha) -->
+    <div class="ceremony-lamp-stage">
+      <div id="sacred-lamp" class="sacred-lamp-trigger" role="button" tabindex="0" aria-label="Light the sacred Kodava Thook Bolcha and begin celebration" aria-pressed="false">
+        <div class="lamp-visual">
+          <!-- Hanging Chain from Ceiling -->
+          <div class="lamp-hanging-chain" aria-hidden="true"></div>
+
+          <!-- Flame Container (Positioned on the cotton wick of the Thook Bolcha) -->
+          <div class="lamp-flame-wrapper">
+            <div class="lamp-flame-glow"></div>
+            <div class="lamp-flame"></div>
+            <div class="lamp-flame-ember"></div>
+          </div>
+
+          <!-- Handcrafted Antique Brass Thook Bolcha SVG (Matching Prabhavali Arch, Elephants & Lion Brackets) -->
+          <svg class="lamp-svg" viewBox="0 0 160 236" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="brass-body" x1="0" y1="0" x2="160" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4a2800" />
+                <stop offset="15%" stop-color="#8c5611" />
+                <stop offset="35%" stop-color="#d4af37" />
+                <stop offset="50%" stop-color="#fff5b8" />
+                <stop offset="65%" stop-color="#d4af37" />
+                <stop offset="85%" stop-color="#8c5611" />
+                <stop offset="100%" stop-color="#3a1e00" />
+              </linearGradient>
+              <radialGradient id="brass-dish" cx="50%" cy="40%" r="50%">
+                <stop offset="0%" stop-color="#fff8c4" />
+                <stop offset="55%" stop-color="#d4af37" />
+                <stop offset="100%" stop-color="#592e02" />
+              </radialGradient>
+            </defs>
+
+
+            <!-- Trefoil Top Suspension Loop -->
+            <path d="M 80 69 C 76 69 72 73 72 77 C 72 80 74 82 76 83 C 70 84 65 89 65 95 C 65 101 70 106 76 106 L 84 106 C 90 106 95 101 95 95 C 95 89 90 84 84 83 C 86 82 88 80 88 77 C 88 73 84 69 80 69 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.8" />
+            <ellipse cx="80" cy="94" rx="8" ry="7.5" fill="#38070b" stroke="#d4af37" stroke-width="1.2" />
+            <circle cx="80" cy="94" r="4.5" fill="none" stroke="url(#brass-body)" stroke-width="2" />
+
+            <!-- Central Stem Hanger -->
+            <path d="M 77 104 L 78 120 C 78 123 74 126 71 129 L 89 129 C 86 126 82 123 82 120 L 83 104 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.8" />
+            <line x1="80" y1="105" x2="80" y2="128" stroke="#fff8c4" stroke-width="1.2" />
+
+            <!-- Semicircular Prabhavali Arch -->
+            <!-- Outer Arch Fill -->
+            <path d="M 18 190 A 62 62 0 0 1 142 190 L 132 190 A 52 52 0 0 0 28 190 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.8" />
+            
+            <!-- Beaded Outer Rim -->
+            <g class="arch-beads">
+              <circle cx="141.0" cy="190.0" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="140.1" cy="179.4" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="137.3" cy="169.1" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="132.8" cy="159.5" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="126.7" cy="150.8" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="119.2" cy="143.3" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="110.5" cy="137.2" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="100.9" cy="132.7" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="90.6" cy="129.9" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="80.0" cy="129.0" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="69.4" cy="129.9" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="59.1" cy="132.7" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="49.5" cy="137.2" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="40.8" cy="143.3" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="33.3" cy="150.8" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="27.2" cy="159.5" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="22.7" cy="169.1" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="19.9" cy="179.4" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+              <circle cx="19.0" cy="190.0" r="1.8" fill="#ffe082" stroke="#5c3504" stroke-width="0.4" />
+            </g>
+
+            <!-- Filigree Openwork Circles inside Arch Band -->
+            <g class="arch-filigree">
+              <circle cx="134.8" cy="185.2" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="132.6" cy="173.9" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="128.1" cy="163.3" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="121.5" cy="153.9" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="113.1" cy="146.1" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="103.2" cy="140.2" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="92.4" cy="136.4" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="81.0" cy="135.0" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="69.5" cy="136.0" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="58.5" cy="139.4" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="48.5" cy="144.9" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="39.8" cy="152.5" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="32.9" cy="161.7" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="28.0" cy="172.1" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+              <circle cx="25.4" cy="183.3" r="2.8" fill="none" stroke="#fff0a0" stroke-width="0.9" />
+            </g>
+
+            <!-- Inner Arch Molded Band -->
+            <path d="M 29 190 A 51 51 0 0 1 131 190" fill="none" stroke="#2a1200" stroke-width="3" />
+            <path d="M 30 190 A 50 50 0 0 1 130 190" fill="none" stroke="url(#brass-body)" stroke-width="2.2" />
+            <path d="M 30.5 190 A 49.5 49.5 0 0 1 129.5 190" fill="none" stroke="#fff8c4" stroke-width="0.8" />
+
+            <!-- Secondary Inner Arch Rib -->
+            <path d="M 36 190 A 44 44 0 0 1 124 190" fill="none" stroke="url(#brass-body)" stroke-width="1.8" />
+            <path d="M 36.5 190 A 43.5 43.5 0 0 1 123.5 190" fill="none" stroke="#ffe082" stroke-width="0.6" />
+
+            <!-- Sculptural Brass Figures inside Arch: Flanking Elephants (Gaja) -->
+            <!-- Left Elephant -->
+            <g class="elephant-left">
+              <path d="M 40 190 L 40 178 C 40 173 45 170 51 170 C 57 170 61 173 63 177 L 63 190 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.7" />
+              <path d="M 59 181 L 59 190 L 55 190 L 55 181 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.5" />
+              <path d="M 45 181 L 45 190 L 41 190 L 41 181 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.5" />
+              <ellipse cx="59" cy="172" rx="5.5" ry="4.5" fill="url(#brass-dish)" stroke="#3a1e00" stroke-width="0.6" />
+              <path d="M 55 169 C 52 171 52 175 55 177 Z" fill="#ffd54f" stroke="#3a1e00" stroke-width="0.5" />
+              <path d="M 63 173 C 67 173 70 169 71 163 C 71 160 69 159 67 160 C 67 163 65 166 62 168 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.6" />
+              <path d="M 63 175 L 67 173" stroke="#fff8e7" stroke-width="1.2" stroke-linecap="round" />
+              <rect x="46" y="171" width="9" height="7" rx="1.5" fill="#ffd700" stroke="#592e02" stroke-width="0.6" />
+            </g>
+
+            <!-- Right Elephant -->
+            <g class="elephant-right">
+              <path d="M 120 190 L 120 178 C 120 173 115 170 109 170 C 103 170 99 173 97 177 L 97 190 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.7" />
+              <path d="M 101 181 L 101 190 L 105 190 L 105 181 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.5" />
+              <path d="M 115 181 L 115 190 L 119 190 L 119 181 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.5" />
+              <ellipse cx="101" cy="172" rx="5.5" ry="4.5" fill="url(#brass-dish)" stroke="#3a1e00" stroke-width="0.6" />
+              <path d="M 105 169 C 108 171 108 175 105 177 Z" fill="#ffd54f" stroke="#3a1e00" stroke-width="0.5" />
+              <path d="M 97 173 C 93 173 90 169 89 163 C 89 160 91 159 93 160 C 93 163 95 166 98 168 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.6" />
+              <path d="M 97 175 L 93 173" stroke="#fff8e7" stroke-width="1.2" stroke-linecap="round" />
+              <rect x="105" y="171" width="9" height="7" rx="1.5" fill="#ffd700" stroke="#592e02" stroke-width="0.6" />
+            </g>
+
+            <!-- Central Pinnacle Motif joining elephant trunks -->
+            <path d="M 77 161 C 79 155 80 151 80 147 C 80 151 81 155 83 161 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.5" />
+            <circle cx="80" cy="147" r="2.2" fill="#ffe082" stroke="#592e02" stroke-width="0.4" />
+
+            <!-- Horizontal Oil Basin (Agal / Thali) Base -->
+            <rect x="22" y="187" width="116" height="8" rx="2.5" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.8" />
+            <line x1="24" y1="189" x2="136" y2="189" stroke="#fff8c4" stroke-width="1" />
+            <line x1="24" y1="193" x2="136" y2="193" stroke="#592e02" stroke-width="0.8" />
+
+            <!-- Main Flared Bowl Body -->
+            <path d="M 28 195 L 35 212 L 125 212 L 132 195 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.8" />
+            <line x1="31" y1="200" x2="129" y2="200" stroke="#fff5b0" stroke-width="1.2" opacity="0.85" />
+            <line x1="33" y1="205" x2="127" y2="205" stroke="#592e02" stroke-width="1" />
+            <line x1="34" y1="209" x2="126" y2="209" stroke="#fff5b0" stroke-width="0.8" opacity="0.75" />
+
+            <!-- Tiered Pedestal Base -->
+            <path d="M 35 212 L 33 218 C 33 222 41 224 80 224 C 119 224 127 222 127 218 L 125 212 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.8" />
+            <ellipse cx="80" cy="222" rx="47" ry="3.5" fill="url(#brass-dish)" stroke="#522f03" stroke-width="0.6" />
+            <ellipse cx="80" cy="224" rx="44" ry="2.5" fill="#3a1e00" opacity="0.5" />
+
+            <!-- Side Lion / Makara Brackets (Simha Mukha) -->
+            <g class="lion-left">
+              <path d="M 23 188 C 18 186 13 189 11 193 C 9 197 11 202 16 204 C 20 206 23 203 24 197 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.7" />
+              <circle cx="15" cy="193" r="1.5" fill="#ffe082" stroke="#592e02" stroke-width="0.4" />
+              <path d="M 11 197 C 14 199 17 199 19 197" stroke="#3a1e00" stroke-width="0.7" />
+              <path d="M 17 202 C 19 204 22 204 23 201" stroke="#3a1e00" stroke-width="0.6" />
+            </g>
+
+            <g class="lion-right">
+              <path d="M 137 188 C 142 186 147 189 149 193 C 151 197 149 202 144 204 C 140 206 137 203 136 197 Z" fill="url(#brass-body)" stroke="#3a1e00" stroke-width="0.7" />
+              <circle cx="145" cy="193" r="1.5" fill="#ffe082" stroke="#592e02" stroke-width="0.4" />
+              <path d="M 149 197 C 146 199 143 199 141 197" stroke="#3a1e00" stroke-width="0.7" />
+              <path d="M 143 202 C 141 204 138 204 137 201" stroke="#3a1e00" stroke-width="0.6" />
+            </g>
+
+            <!-- Center Cotton Wick (Thiri) in Oil Dish -->
+            <ellipse cx="80" cy="189" rx="6" ry="2" fill="#592e02" />
+            <path d="M 78.5 190 C 78.5 186 79.5 182 80 180 C 80.5 182 81.5 186 81.5 190 Z" fill="#fff8e7" stroke="#7a4b08" stroke-width="0.4" />
+          </svg>
+        </div>
+
+        <!-- Interactive Callout Prompt -->
+        <div class="lamp-callout">
+          <span class="lamp-instruction">
+            <span class="lamp-sparkle-icon">✨</span>
+            <span id="lamp-status-text">Tap to light</span>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -125,60 +319,72 @@
     <!-- Details Card (Date & Venue) -->
     <section class="details-section">
       <div class="glass-card details-card">
-        <!-- Oorkuduva Ceremony Row -->
-        <div class="detail-row">
-          <div class="detail-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
+        <!-- Section 1: Ceremonies & Timings -->
+        <div class="card-section-header">
+          <span class="section-ornament" aria-hidden="true">✦</span>
+          <span class="section-title">Ceremonies &amp; Timings</span>
+          <span class="section-ornament" aria-hidden="true">✦</span>
+        </div>
+
+        <div class="ceremonies-list">
+          <!-- Oorkuduva Ceremony -->
+          <div class="ceremony-row">
+            <div class="date-badge" aria-label="October 14, 2026">
+              <span class="badge-month">OCT</span>
+              <span class="badge-day">14</span>
+            </div>
+            <div class="detail-info">
+              <h2 class="detail-heading">Oorkuduva Ceremony</h2>
+              <p class="detail-sub">Wednesday • 7:00 PM onwards</p>
+            </div>
           </div>
-          <div class="detail-info">
-            <h2 class="detail-heading">Oorkuduva Ceremony</h2>
-            <p class="detail-sub">Wednesday, October 14, 2026 • 7:00 PM onwards</p>
+
+          <!-- Wedding Ceremony -->
+          <div class="ceremony-row">
+            <div class="date-badge" aria-label="October 15, 2026">
+              <span class="badge-month">OCT</span>
+              <span class="badge-day">15</span>
+            </div>
+            <div class="detail-info">
+              <h2 class="detail-heading">Wedding Ceremony</h2>
+              <p class="detail-sub">Thursday • 10:40 AM onwards</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-separator"></div>
-
-        <!-- Wedding Ceremony Row -->
-        <div class="detail-row">
-          <div class="detail-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-          </div>
-          <div class="detail-info">
-            <h2 class="detail-heading">Wedding Ceremony (Muhurtha)</h2>
-            <p class="detail-sub">Thursday, October 15, 2026 • 10:40 AM IST</p>
-          </div>
+        <!-- Ornate Separator -->
+        <div class="card-ornate-separator" aria-hidden="true">
+          <span class="sep-line"></span>
+          <span class="sep-diamond">❖</span>
+          <span class="sep-line"></span>
         </div>
 
-        <div class="card-separator"></div>
-
-        <!-- Venue Row -->
-        <div class="detail-row">
-          <div class="detail-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-          </div>
-          <div class="detail-info">
-            <h2 class="detail-heading">Ammathi Kodava Samaja</h2>
-            <p class="detail-sub">Ammathi, Kodagu (Coorg), Karnataka</p>
-          </div>
+        <!-- Section 2: Venue & Location -->
+        <div class="card-section-header">
+          <span class="section-ornament" aria-hidden="true">✦</span>
+          <span class="section-title">Venue &amp; Location</span>
+          <span class="section-ornament" aria-hidden="true">✦</span>
         </div>
 
-        <!-- Venue Action Link -->
-        <div class="venue-action">
-          <a href="https://www.google.com/maps/search/?api=1&query=Ammathi+Kodava+Samaja" target="_blank" rel="noopener noreferrer" class="btn-link">
-            <span>View on Google Maps</span>
-            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          </a>
+        <div class="venue-block">
+          <div class="venue-info">
+            <h2 class="venue-name">Ammathi Kodava Samaja</h2>
+            <p class="venue-address">Ammathi, Kodagu (Coorg), Karnataka</p>
+          </div>
+          <div class="venue-action">
+            <a href="https://www.google.com/maps/search/?api=1&query=Ammathi+Kodava+Samaja" target="_blank" rel="noopener noreferrer" class="btn-venue-map">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>View on Google Maps</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -226,10 +432,11 @@
 
   <!-- Client Script Orchestrator -->
   <script type="module">
-    import { initCountdown } from './js/countdown.js';
-    import { initParticles } from './js/particles.js';
-    import { initAudio, enableAutoPlayOnInteraction } from './js/audio.js';
-    import { generateGoogleCalendarUrl, downloadIcsFile } from './js/calendar.js';
+    import { initCountdown } from './js/countdown.js?v=2';
+    import { initParticles } from './js/particles.js?v=2';
+    import { initAudio, enableAutoPlayOnInteraction } from './js/audio.js?v=2';
+    import { initSacredLamp } from './js/lamp.js?v=2';
+    import { generateGoogleCalendarUrl, downloadIcsFile } from './js/calendar.js?v=2';
 
     // 1. Initialize Particles Canvas
     const canvas = document.getElementById('particles-canvas');
@@ -241,12 +448,53 @@
     const audioPillText = document.getElementById('audio-pill-text');
     const audioController = initAudio({ buttonElement: audioBtn });
 
+    // 3. Initialize Traditional Coorg Sacred Hanging Lamp (Thook Bolcha) Ceremonial Entrance
+    const lampElement = document.getElementById('sacred-lamp');
+    const lampStatusText = document.getElementById('lamp-status-text');
+    const ceremonyOverlay = document.getElementById('ceremony-overlay');
+    const reopenCeremonyBtn = document.getElementById('reopen-ceremony-btn');
+
+    const lampController = initSacredLamp({
+      lampElement: lampElement,
+      overlayElement: ceremonyOverlay,
+      statusTextElement: lampStatusText,
+      reopenButton: reopenCeremonyBtn,
+      audioController: audioController,
+      unfurlDelay: 1600,
+      onLight: () => {
+        if (audioPill && audioPillText) {
+          audioPillText.textContent = 'Playing Valaga Eravaat';
+          audioPill.classList.add('playing');
+        }
+      },
+      onUnfurl: () => {
+        setTimeout(() => {
+          if (audioPill) audioPill.classList.add('fade-out');
+        }, 3500);
+      }
+    });
+
+    // Synchronize lamp when audio toggle button is clicked
+    if (audioBtn) {
+      audioBtn.addEventListener('click', () => {
+        setTimeout(() => {
+          if (audioController.isPlaying() && !lampController.isLit()) {
+            lampController.light();
+          } else if (!audioController.isPlaying() && lampController.isLit()) {
+            lampController.extinguish();
+          }
+        }, 50);
+      });
+    }
+
     // Enable direct clicking on the floating pill
     if (audioPill) {
       const handlePillClick = (e) => {
         e.stopPropagation();
         if (!audioController.isPlaying()) {
-          audioController.play();
+          lampController.light();
+        } else {
+          lampController.extinguish();
         }
       };
       audioPill.addEventListener('click', handlePillClick);
@@ -258,31 +506,18 @@
       });
     }
 
-    // Modern browsers require a click/tap to play audio; scrolling alone is blocked.
-    // If a desktop user scrolls before clicking, highlight the pill to prompt them.
-    const handleScrollAttempt = () => {
-      if (!audioController.isPlaying() && audioPill && !audioPill.classList.contains('playing')) {
-        audioPillText.textContent = 'Click anywhere for music';
-        audioPill.classList.remove('fade-out');
-        audioPill.classList.remove('pulse-attention');
-        void audioPill.offsetWidth; // trigger reflow for animation restart
-        audioPill.classList.add('pulse-attention');
-      }
-    };
-    window.addEventListener('wheel', handleScrollAttempt, { passive: true });
-    window.addEventListener('scroll', handleScrollAttempt, { passive: true });
-
-    // Enable audio on first tap/click anywhere on screen
+    // Enable audio and light lamp on first tap/click anywhere on screen
     enableAutoPlayOnInteraction(audioController, {
       onStarted: () => {
-        window.removeEventListener('wheel', handleScrollAttempt);
-        window.removeEventListener('scroll', handleScrollAttempt);
+        if (!lampController.isLit()) {
+          lampController.light();
+        }
         if (audioPill && audioPillText) {
           audioPillText.textContent = 'Playing Valaga Eravaat';
           audioPill.classList.add('playing');
           setTimeout(() => {
             audioPill.classList.add('fade-out');
-          }, 2400);
+          }, 3000);
         }
       }
     });
