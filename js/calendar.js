@@ -2,8 +2,8 @@
 
 export function getWeddingEventDetails() {
   return {
-    title: "Ponanna & Harshita's Wedding",
-    description: "Join us in celebrating the wedding of Ponanna & Harshita at Kodava Samaja, Ammathi, Coorg!",
+    title: "Harshita & Ponanna's Wedding",
+    description: "Join us in celebrating the wedding of Harshita & Ponanna at Kodava Samaja, Ammathi, Coorg!",
     location: "Kodava Samaja, Ammathi, Kodagu (Coorg), Karnataka, India",
     // 10:40 AM IST = 05:10 AM UTC
     startUtcIso: "20261015T051000Z",

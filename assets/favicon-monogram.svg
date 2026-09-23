@@ -22,7 +22,7 @@
 
   <!-- Monogram text P & H in luxury serif -->
   <g filter="url(#glow)">
-    <text x="32" y="41" font-family="'Playfair Display', 'Cinzel', Georgia, serif" font-size="24" font-weight="700" fill="url(#gGrad)" text-anchor="middle" letter-spacing="1">P&amp;H</text>
+    <text x="32" y="41" font-family="'Playfair Display', 'Cinzel', Georgia, serif" font-size="24" font-weight="700" fill="url(#gGrad)" text-anchor="middle" letter-spacing="1">H&amp;P</text>
   </g>
   <!-- Tiny delicate diamond crown motif above -->
   <polygon points="32,13 34.5,17 32,20 29.5,17" fill="#ffffff" opacity="0.9"/>

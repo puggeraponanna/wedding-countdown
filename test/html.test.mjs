@@ -8,7 +8,7 @@ test('index.html contains all required WhatsApp OpenGraph tags', () => {
   const html = fs.readFileSync(path.resolve('index.html'), 'utf8');
 
   assert.ok(html.includes('property="og:title"'), 'Must have og:title');
-  assert.ok(html.includes('Ponanna &amp; Harshita') || html.includes('Ponanna & Harshita'));
+  assert.ok(html.includes('Harshita &amp; Ponanna') || html.includes('Harshita & Ponanna'));
   assert.ok(html.includes('property="og:description"'), 'Must have og:description');
   assert.ok(html.includes('property="og:image"'), 'Must have og:image');
   assert.ok(html.includes('assets/og-preview.png'), 'Must point to assets/og-preview.png');
