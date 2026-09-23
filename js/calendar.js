@@ -3,7 +3,7 @@
 export function getWeddingEventDetails() {
   return {
     title: "Harshita & Ponanna's Wedding",
-    description: "Join us in celebrating the wedding of Harshita & Ponanna at Kodava Samaja, Ammathi, Coorg!",
+    description: "Please join us for the Oorkuduva Ceremony on October 14th (7:00 PM onwards), and the wedding on October 15th (10:40 AM) at Kodava Samaja, Ammathi. We look forward to your presence and blessings!",
     location: "Kodava Samaja, Ammathi, Kodagu (Coorg), Karnataka, India",
     // 10:40 AM IST = 05:10 AM UTC
     startUtcIso: "20261015T051000Z",

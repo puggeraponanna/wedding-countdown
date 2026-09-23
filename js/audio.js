@@ -1,9 +1,9 @@
 // js/audio.js
 
 export const WEDDING_MUSIC_TRACK = {
-  id: 'canon-in-d',
-  name: 'Romantic Strings & Piano',
-  subtitle: "Pachelbel's Canon in D Major",
+  id: 'valaga-eravatt',
+  name: 'Kodava Valaga',
+  subtitle: 'Traditional Eravaat Instrumental',
   src: 'assets/wedding-music.m4a',
   fallbackSrc: 'assets/wedding-music.ogg',
 };

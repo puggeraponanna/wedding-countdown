@@ -14,9 +14,9 @@ test('createAudioState manages play and mute transitions', () => {
   assert.equal(state.isPlaying(), false);
 });
 
-test('WEDDING_MUSIC_TRACK is configured for Canon in D acoustic strings & piano', () => {
-  assert.equal(WEDDING_MUSIC_TRACK.id, 'canon-in-d');
-  assert.ok(WEDDING_MUSIC_TRACK.name.includes('Strings') || WEDDING_MUSIC_TRACK.name.includes('Canon'));
+test('WEDDING_MUSIC_TRACK is configured for Kodava Valaga Eravaat track', () => {
+  assert.equal(WEDDING_MUSIC_TRACK.id, 'valaga-eravatt');
+  assert.ok(WEDDING_MUSIC_TRACK.name.includes('Valaga') || WEDDING_MUSIC_TRACK.subtitle.includes('Eravaat'));
   assert.ok(WEDDING_MUSIC_TRACK.src.includes('assets/wedding-music.m4a'));
 });
 

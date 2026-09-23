@@ -38,38 +38,46 @@
 
   <!-- Right side text content (centered at x=860) -->
   <g text-anchor="middle">
-    <text x="860" y="135" font-family="'Cinzel', Georgia, serif" font-size="16" letter-spacing="6" fill="#966214" font-weight="600">
-      WEDDING CELEBRATION
+    <text x="860" y="125" font-family="'Cinzel', Georgia, serif" font-size="15" letter-spacing="5" fill="#966214" font-weight="600">
+      WEDDING CELEBRATIONS
     </text>
 
     <!-- Couple Names -->
-    <text x="860" y="225" font-family="'Playfair Display', Georgia, serif" font-size="42" font-weight="bold" fill="#5c1416" font-style="italic">
+    <text x="860" y="200" font-family="'Playfair Display', Georgia, serif" font-size="40" font-weight="bold" fill="#5c1416" font-style="italic">
       Harshita &amp; Ponanna
     </text>
 
     <!-- Gold divider with diamond -->
     <g stroke="url(#gold)" stroke-width="1.5" fill="none">
-      <line x1="710" y1="265" x2="810" y2="265"/>
-      <polygon points="860,258 867,265 860,272 853,265" fill="#c88d32" stroke="none"/>
-      <line x1="910" y1="265" x2="1010" y2="265"/>
+      <line x1="710" y1="235" x2="810" y2="235"/>
+      <polygon points="860,228 867,235 860,242 853,235" fill="#c88d32" stroke="none"/>
+      <line x1="910" y1="235" x2="1010" y2="235"/>
     </g>
 
-    <!-- Date & Time -->
-    <text x="860" y="330" font-family="'Playfair Display', Georgia, serif" font-size="27" font-weight="600" fill="#2c1b14">
-      Thursday, 15th October 2026
+    <!-- Oorkuduva Ceremony -->
+    <text x="860" y="280" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" letter-spacing="2" fill="#7a2225" font-weight="700">
+      OORKUDUVA CEREMONY
     </text>
-    <text x="860" y="375" font-family="'Plus Jakarta Sans', sans-serif" font-size="21" fill="#7a2225" font-weight="600">
-      Muhurtha at 10:40 AM IST
+    <text x="860" y="310" font-family="'Playfair Display', Georgia, serif" font-size="22" font-weight="600" fill="#2c1b14">
+      Wednesday, 14th October 2026 • 7:00 PM
+    </text>
+
+    <!-- Wedding Ceremony -->
+    <text x="860" y="365" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" letter-spacing="2" fill="#7a2225" font-weight="700">
+      WEDDING CEREMONY (MUHURTHA)
+    </text>
+    <text x="860" y="395" font-family="'Playfair Display', Georgia, serif" font-size="22" font-weight="600" fill="#2c1b14">
+      Thursday, 15th October 2026 • 10:40 AM
     </text>
 
     <!-- Venue -->
-    <text x="860" y="435" font-family="'Plus Jakarta Sans', sans-serif" font-size="21" letter-spacing="1" fill="#4a382e" font-weight="500">
+    <text x="860" y="445" font-family="'Plus Jakarta Sans', sans-serif" font-size="19" letter-spacing="1" fill="#4a382e" font-weight="500">
       Kodava Samaja • Ammathi, Coorg
     </text>
 
     <!-- Bottom Pill CTA -->
-    <rect x="700" y="480" width="320" height="46" rx="23" fill="#5c1416" stroke="url(#gold)" stroke-width="1.5"/>
-    <text x="860" y="510" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" letter-spacing="3" fill="#fcfbf7" font-weight="600">
+    <rect x="700" y="480" width="320" height="44" rx="22" fill="#5c1416" stroke="url(#gold)" stroke-width="1.5"/>
+    <text x="860" y="508" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" letter-spacing="3" fill="#fcfbf7" font-weight="600">
       COUNTING DOWN TO FOREVER
     </text>
   </g>

@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Harshita &amp; Ponanna — Wedding Countdown</title>
-  <meta name="description" content="You are cordially invited to celebrate the wedding of Harshita &amp; Ponanna on Thursday, October 15, 2026 at Kodava Samaja, Ammathi, Coorg." />
+  <meta name="description" content="Please join us for the Oorkuduva Ceremony on October 14th (7:00 PM onwards), and the wedding on October 15th (10:40 AM) at Kodava Samaja, Ammathi. We look forward to your presence and blessings!" />
 
   <!-- WhatsApp & Social OpenGraph Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://harshita.weds.ponanna.com/" />
   <meta property="og:title" content="Harshita &amp; Ponanna — Wedding Countdown" />
-  <meta property="og:description" content="You are cordially invited to celebrate the wedding of Harshita &amp; Ponanna on October 15, 2026 at Kodava Samaja, Ammathi, Coorg. Counting down the moments to forever!" />
+  <meta property="og:description" content="Please join us for the Oorkuduva Ceremony on October 14th (7:00 PM onwards), and the wedding on October 15th (10:40 AM) at Kodava Samaja, Ammathi. We look forward to your presence and blessings!" />
   <meta property="og:image" content="https://harshita.weds.ponanna.com/assets/og-preview.png" />
   <meta property="og:image:secure_url" content="https://harshita.weds.ponanna.com/assets/og-preview.png" />
   <meta property="og:image:type" content="image/png" />
@@ -21,7 +21,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Harshita &amp; Ponanna — Wedding Countdown" />
-  <meta name="twitter:description" content="You are cordially invited to celebrate the wedding of Harshita &amp; Ponanna on October 15, 2026 at Kodava Samaja, Ammathi, Coorg." />
+  <meta name="twitter:description" content="Please join us for the Oorkuduva Ceremony on October 14th (7:00 PM onwards), and the wedding on October 15th (10:40 AM) at Kodava Samaja, Ammathi. We look forward to your presence and blessings!" />
   <meta name="twitter:image" content="https://harshita.weds.ponanna.com/assets/og-preview.png" />
 
   <!-- Favicon -->
@@ -51,7 +51,7 @@
         <path class="sound-wave sound-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
         <path class="sound-wave sound-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
       </svg>
-      <span class="audio-tooltip">Music: Canon in D</span>
+      <span class="audio-tooltip">Music: Valaga Eravaat</span>
     </button>
     <div id="audio-pill" class="audio-pill" role="button" tabindex="0" aria-label="Play wedding music">
       <span class="audio-pill-icon">🎵</span>
@@ -125,7 +125,23 @@
     <!-- Details Card (Date & Venue) -->
     <section class="details-section">
       <div class="glass-card details-card">
-        <!-- Date Row -->
+        <!-- Oorkuduva Ceremony Row -->
+        <div class="detail-row">
+          <div class="detail-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="detail-info">
+            <h2 class="detail-heading">Oorkuduva Ceremony</h2>
+            <p class="detail-sub">Wednesday, October 14, 2026 • 7:00 PM onwards</p>
+          </div>
+        </div>
+
+        <div class="card-separator"></div>
+
+        <!-- Wedding Ceremony Row -->
         <div class="detail-row">
           <div class="detail-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2">
@@ -136,8 +152,8 @@
             </svg>
           </div>
           <div class="detail-info">
-            <h2 class="detail-heading">Thursday, October 15, 2026</h2>
-            <p class="detail-sub">Muhurtha at 10:40 AM IST</p>
+            <h2 class="detail-heading">Wedding Ceremony (Muhurtha)</h2>
+            <p class="detail-sub">Thursday, October 15, 2026 • 10:40 AM IST</p>
           </div>
         </div>
 
@@ -262,7 +278,7 @@
         window.removeEventListener('wheel', handleScrollAttempt);
         window.removeEventListener('scroll', handleScrollAttempt);
         if (audioPill && audioPillText) {
-          audioPillText.textContent = 'Playing Canon in D';
+          audioPillText.textContent = 'Playing Valaga Eravaat';
           audioPill.classList.add('playing');
           setTimeout(() => {
             audioPill.classList.add('fade-out');
@@ -321,7 +337,7 @@
     // 5. Initialize WhatsApp Share Link
     const shareUrl = window.location.href;
     const shareText = encodeURIComponent(
-      `Join us in counting down to Harshita & Ponanna's Wedding! 💍✨\nThursday, October 15, 2026 • Kodava Samaja, Ammathi, Coorg\n${shareUrl}`
+      `Please join us for the Oorkuduva Ceremony on October 14th (7:00 PM onwards), and the wedding on October 15th (10:40 AM) at Kodava Samaja, Ammathi.\n\nWe look forward to your presence and blessings! 💍✨\n\n${shareUrl}`
     );
     const whatsappShareBtn = document.getElementById('whatsapp-share');
     whatsappShareBtn.href = `https://api.whatsapp.com/send?text=${shareText}`;
