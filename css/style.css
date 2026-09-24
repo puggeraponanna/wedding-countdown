@@ -53,13 +53,18 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  height: 100%;
+  min-height: 100%;
+  background-color: var(--color-bg-warm);
 }
 
 body {
   min-height: 100vh;
   min-height: 100svh;
-  background: radial-gradient(circle at 50% 15%, #ffffff 0%, #fbf6ee 45%, #f2e7d5 100%);
+  background-color: var(--color-bg-warm);
+  background: linear-gradient(180deg, #fdfbf7 0%, #fbf8f2 50%, #f7f2e7 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: var(--color-espresso);
   font-family: var(--font-body);
   line-height: 1.6;
